@@ -1,4 +1,6 @@
-# Busbud Coding Challenge [![Build Status](https://circleci.com/gh/busbud/coding-challenge-backend-c/tree/master.png?circle-token=6e396821f666083bc7af117113bdf3a67523b2fd)](https://circleci.com/gh/busbud/coding-challenge-backend-c)
+# Busbud Coding Challenge
+
+Adapted from [Busbud Backend Coding Challenge](https://github.com/busbud/coding-challenge-backend-c)
 
 ## Requirements
 
@@ -7,12 +9,12 @@ The suggestions should be restricted to cities in the USA and Canada with a popu
 
 - the endpoint is exposed at `/suggestions`
 - the partial (or complete) search term is passed as a querystring parameter `q`
-- the caller's location can optionally be supplied via querystring parameters `latitude` and `longitude` to help improve relative scores
 - the endpoint returns a JSON response with an array of scored suggested matches
     - the suggestions are sorted by descending score
     - each suggestion has a score between 0 and 1 (inclusive) indicating confidence in the suggestion (1 is most confident)
     - each suggestion has a name which can be used to disambiguate between similarly named locations
     - each suggestion has a latitude and longitude
+- **BONUS** the caller's location can optionally be supplied via querystring parameters `latitude` and `longitude` to help improve relative scores
 - all functional tests should pass (additional tests may be implemented as necessary).
 - the final application should be [deployed to Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs).
 - feel free to add more features if you like!
@@ -83,20 +85,7 @@ These responses are meant to provide guidance. The exact values can vary based o
 
 ## Getting Started
 
-Begin by forking this repo and cloning your fork. GitHub has apps for [Mac](http://mac.github.com/) and
-[Windows](http://windows.github.com/) that make this easier.
-
-### Setting up a Nodejs environment
-
-Get started by installing [nodejs](http://www.nodejs.org).
-
-For OS X users, use [Homebrew](http://brew.sh) and `brew install nvm`
-
-Once that's done, from the project directory, run
-
-```
-nvm use
-```
+Begin by cloning this repo.
 
 ### Setting up the project
 
@@ -119,7 +108,7 @@ npm test
 To start a local server run
 
 ```
-PORT=3456 npm start
+npm start
 ```
 
 which should produce output similar to
