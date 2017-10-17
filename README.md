@@ -15,7 +15,8 @@ The suggestions should be restricted to cities in the USA and Canada with a popu
     - each suggestion has a name which can be used to disambiguate between similarly named locations
     - each suggestion has a latitude and longitude
 - **BONUS** the caller's location can optionally be supplied via querystring parameters `latitude` and `longitude` to help improve relative scores
-- all functional tests should pass (additional tests may be implemented as necessary).
+- all functional tests should pass
+- **BONUS** add your own tests
 - the final application should be [deployed to Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs).
 - feel free to add more features if you like!
 
