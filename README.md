@@ -16,7 +16,7 @@ The suggestions should be restricted to cities in the USA and Canada with a popu
     - each suggestion has a latitude and longitude
 - **BONUS** the caller's location can optionally be supplied via querystring parameters `latitude` and `longitude` to help improve relative scores
 - all functional tests should pass
-- **BONUS** add your own tests
+    - provided tests only verify the most basic functionality, you may want to add your own!
 - the final application should be [deployed to Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs).
 - feel free to add more features if you like!
 
@@ -70,11 +70,10 @@ These responses are meant to provide guidance. The exact values can vary based o
 ```
 
 
-### Non-functional
+### Other requirements
 
 - All code should be written in Javascript
-- Mitigations to handle high levels of traffic should be implemented
-- Challenge is submitted as pull request against this repo ([fork it](https://help.github.com/articles/fork-a-repo/) and [create a pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/)).
+- **BONUS** Mitigations to handle high levels of traffic should be implemented
 - Documentation and maintainability is a plus
 
 ### References
@@ -115,5 +114,5 @@ npm start
 which should produce output similar to
 
 ```
-Server running at http://127.0.0.1:2345/suggestions
+Server running at http://localhost:2345
 ```

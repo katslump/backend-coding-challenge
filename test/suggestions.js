@@ -1,28 +1,29 @@
-var expect  = require('chai').expect;
-var app     = require('../app');
-var request = require('supertest')(app);
+var chai = require('chai');
+var expect = chai.expect;
+var app  = require('../app');
+var chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
 describe('GET /suggestions', function() {
   describe('with a non-existent city', function () {
     var response;
 
     before(function (done) {
-      request
+      chai.request(app)
         .get('/suggestions?q=SomeRandomCityInTheMiddleOfNowhere')
         .end(function (err, res) {
           response = res;
-          response.json = JSON.parse(res.text);
-          done(err);
+          done();
         });
     });
 
     it('returns a 404', function () {
-      expect(response.statusCode).to.equal(404);
+      expect(response.status).to.equal(404);
     });
 
     it('returns an empty array of suggestions', function () {
-      expect(response.json.suggestions).to.be.instanceof(Array);
-      expect(response.json.suggestions).to.have.length(0);
+      expect(response.body.suggestions).to.be.instanceof(Array);
+      expect(response.body.suggestions).to.have.length(0);
     });
   });
 
@@ -30,11 +31,10 @@ describe('GET /suggestions', function() {
     var response;
 
     before(function (done) {
-      request
+      chai.request(app)
         .get('/suggestions?q=Montreal')
         .end(function (err, res) {
           response = res;
-          response.json = JSON.parse(res.text);
           done(err);
         });
     });
@@ -44,20 +44,20 @@ describe('GET /suggestions', function() {
     });
 
     it('returns an array of suggestions', function () {
-      expect(response.json.suggestions).to.be.instanceof(Array);
-      expect(response.json.suggestions).to.have.length.above(0);
+      expect(response.body.suggestions).to.be.instanceof(Array);
+      expect(response.body.suggestions).to.have.length.above(0);
     });
 
     it('contains a match', function () {
-      expect(response.json.suggestions).to.satisfy(function (suggestions) {
+      expect(response.body.suggestions).to.satisfy(function (suggestions) {
         return suggestions.some(function (suggestion) {
-          return suggestion.name.test(/montreal/i);
+          return suggestion.name.match(/montreal/i);
         });
       })
     });
 
     it('contains latitudes and longitudes', function () {
-      expect(response.json.suggestions).to.satisfy(function (suggestions) {
+      expect(response.body.suggestions).to.satisfy(function (suggestions) {
         return suggestions.every(function (suggestion) {
           return suggestion.latitude && suggestion.longitude;
         });
@@ -65,7 +65,7 @@ describe('GET /suggestions', function() {
     });
 
     it('contains scores', function () {
-      expect(response.json.suggestions).to.satisfy(function (suggestions) {
+      expect(response.body.suggestions).to.satisfy(function (suggestions) {
         return suggestions.every(function (suggestion) {
           return suggestion.latitude && suggestion.longitude;
         });
