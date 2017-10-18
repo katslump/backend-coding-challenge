@@ -1,6 +1,6 @@
 # Busbud Coding Challenge
 
-Adapted from [Busbud Backend Coding Challenge](https://github.com/busbud/coding-challenge-backend-c)
+Adapted from a real coding challenge from a tech startup: [Busbud Backend Coding Challenge](https://github.com/busbud/coding-challenge-backend-c)
 
 ## Requirements
 
@@ -9,6 +9,8 @@ The suggestions should be restricted to cities in the USA and Canada with a popu
 
 - the endpoint is exposed at `/suggestions`
 - the partial (or complete) search term is passed as a querystring parameter `q`
+    - prefix match is a good minimal solution
+    - can you handle typos? common abbreviations? (i.e. sf for San Francisco, or nyc for New York)
 - the endpoint returns a JSON response with an array of scored suggested matches
     - the suggestions are sorted by descending score
     - each suggestion has a score between 0 and 1 (inclusive) indicating confidence in the suggestion (1 is most confident)
@@ -17,8 +19,8 @@ The suggestions should be restricted to cities in the USA and Canada with a popu
 - **BONUS** the caller's location can optionally be supplied via querystring parameters `latitude` and `longitude` to help improve relative scores
 - all functional tests should pass
     - provided tests only verify the most basic functionality, you may want to add your own!
-- the final application should be [deployed to Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs).
-- feel free to add more features if you like!
+- the final application should be [deployed to Heroku](https://www.heroku.com/).
+- feel free to add more features!
 
 #### Sample responses
 
