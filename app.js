@@ -1,9 +1,20 @@
 var express = require('express');
 var app = express();
 var fs = require('fs');
+const path = require('path');
+const compress = require('compression');
 var tsv = require('tsv');
 var parsedData = {};
 var score = require('string-score');
+
+// Set /build as our static content directory
+const publicPath = path.join(__dirname, 'build');
+
+// Point the app to our static assets
+app.use(express.static(publicPath));
+
+// Automatically gzip compresses all of our HTTP body data
+app.use(compress());
 
 fs.readFile("./data/cities_canada-usa.tsv", "utf8", function(error, data) {
     parsedData = tsv.parse(data);
@@ -44,7 +55,7 @@ app.get('/suggestions/:q', (req, res, next) => {
     }
 });
 
-var port = process.env.PORT || 2345;
+var port = process.env.PORT || 3000;
 app.listen(port);
 console.log('Server running at http://localhost:%d/', port);
 

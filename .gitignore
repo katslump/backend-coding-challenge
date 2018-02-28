@@ -4,7 +4,6 @@ npm-debug.log
 npm-debug.log.*
 .tmp
 .DS_Store
-*.html
 .idea/
 *.swp
 env.sh

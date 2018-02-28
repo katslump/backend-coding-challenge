@@ -20,6 +20,10 @@ module.exports = {
       }
     ]
   },
+  node: {
+        fs: 'empty',
+        net: 'empty'
+    },
   stats: {
     colors: true
   },
