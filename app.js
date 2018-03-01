@@ -1,3 +1,4 @@
+// Import necessary dependencies
 var express = require('express');
 var app = express();
 var fs = require('fs');
@@ -16,13 +17,16 @@ app.use(express.static(publicPath));
 // Automatically gzip compresses all of our HTTP body data
 app.use(compress());
 
+// Read in TSV and parse data
 fs.readFile("./data/cities_canada-usa.tsv", "utf8", function(error, data) {
     parsedData = tsv.parse(data);
 });
 
+// Get the string score
 getScore = (data, term) => {
     var suggestions = [];
 
+    // Create and push new object with score
     data.map(city => {
         suggestions.push ({
             name: city.name,
@@ -32,6 +36,7 @@ getScore = (data, term) => {
         });
     });
 
+    // Sort in descending order
     suggestions.sort(function(a,b) {
         return b.score - a.score;
     });
@@ -55,6 +60,7 @@ app.get('/suggestions/:q', (req, res, next) => {
     }
 });
 
+// Setup port
 var port = process.env.PORT || 3000;
 app.listen(port);
 console.log('Server running at http://localhost:%d/', port);
